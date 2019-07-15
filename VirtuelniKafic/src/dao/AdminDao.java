@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import model.Rola;
 import model.User;
 
 public class AdminDao {
@@ -43,7 +44,31 @@ public class AdminDao {
 		
 	}
 	
-	
+public static boolean dodajUnovcanik(User user, String balance) {
+		
+		double uplata = Double.parseDouble(balance);
+		double staroStanjeUnovcaniku = user.getNovcanik();
+		double konacno = uplata + staroStanjeUnovcaniku;
+		
+		if(user.getRola().equals(Rola.ADMINISTRATOR)) {
+			user.setNovcanik(0);
+		}else {
+			user.setNovcanik(konacno);
+		}
+		
+		Session session = sf.openSession();
+		session.beginTransaction();
+			try {
+				session.update(user);
+				session.getTransaction().commit();
+				return true;
+			} catch (Exception e) {
+				session.getTransaction().rollback();
+				return false;
+		}finally {
+			session.close();
+		}
+	}
 	
 	
 	
