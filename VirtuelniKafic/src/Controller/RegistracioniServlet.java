@@ -27,7 +27,7 @@ public class RegistracioniServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		//JA SAM BOG
 		RegistracijaDao registracijaDAO = new RegistracijaDao();
 		
 		System.out.println("Pozdrav iz servleta!");
