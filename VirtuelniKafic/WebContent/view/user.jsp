@@ -25,14 +25,50 @@
   List<Artikal> listaArtikala = userDao.vratiSveArtikle();     
 %>
 <form action="../PlatiRacunServlet"method="get">
+<table border="1">
+<tr>
+   <th>id</th>
+   <th>ime</th>
+   <th>cena</th>
+   <th>popust</th>
+   <th>check</th>
+   <th>kolicina</th>
+
+  </tr>
+<%
+for(Artikal a:listaArtikala){
+%>
+<tr>
+      <td> <%=a.getIdArtikal() %></td>
+       <td> <%=a.getImeArtikla() %></td>
+       <td> <%=a.getCena() %></td>
+       <td> <%=a.getPopust() %></td>
+       <td> <input type="checkbox" name="check" value="<%=a.getIdArtikal()%>"></td>
+       <td>
+         <select name="kolicina">
+         <%
+            for(int i = 0;i<=a.getStanje();i++){	          
+         %>
+         
+         <option value="<%=i %>"><%=i %>></option>
+                  <%
+                       }
+                  %>
+         
+         
+                 </select>
+
+                </td>
+   
+      </tr>
+ <%
+  }
+  %>
 
 
+</table>
 
-
-
-
-
-
+<input type="submit" value="PLATI RACUN">
 
 
 </form>
