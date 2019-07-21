@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import model.Artikal;
 import model.Rola;
 import model.User;
 
@@ -90,5 +91,32 @@ public static boolean UpdateNovcanik(User user, String balance) {
 	}
 }
 	
+public static boolean UbaciArtikalUbazu(String imeArtikla,String cena,String stanje,String popust) {
+	     Artikal artikal = new Artikal();
+	     artikal.setImeArtikla(imeArtikla);
+	     double cenaArtikla = Double.parseDouble(cena);
+	           artikal.setCena(cenaArtikla);
+	     int stanjeUMagacinu = Integer.parseInt(stanje);
+	           artikal.setStanje(stanjeUMagacinu);  
+	        if(popust.isEmpty()) {
+	        	   artikal.setPopust(0);
+	           }else {
+	        	   double popustNaArtikal = Double.parseDouble(popust);
+		           artikal.setPopust(popustNaArtikal); 
+	           }
+	  Session session = sf.openSession();
+	  session.beginTransaction();
+	  try {
+		  session.save(artikal);
+		session.getTransaction().commit();
+		return true;
+	} catch (Exception e) {
+		session.getTransaction().rollback();
+		return false;
+	}finally {
+		session.close();
+	}
+		
+}
 
 }

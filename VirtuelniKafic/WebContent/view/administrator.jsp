@@ -27,6 +27,7 @@
 	
 	<a href = "addBalance.jsp"><button>ADD BALANCE</button></a>
 	<a href = "updateBalance.jsp"><button>UPDATE BALANCE</button></a>
+	<a href = "addArtikal.jsp"><button>ADD ARTIKAL</button></a>
 	
 	<hr>
 	<br>
