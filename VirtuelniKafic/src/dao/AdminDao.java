@@ -70,7 +70,25 @@ public static boolean dodajUnovcanik(User user, String balance) {
 		}
 	}
 	
+public static boolean UpdateNovcanik(User user, String balance) {
 	
+	double uplata = Double.parseDouble(balance);
+	user.setNovcanik(uplata);
+	
+	
+	Session session = sf.openSession();
+	session.beginTransaction();
+		try {
+			session.update(user);
+			session.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return false;
+	}finally {
+		session.close();
+	}
+}
 	
 
 }

@@ -26,6 +26,7 @@
 	<p>Ovo je administratorova strana. Ovde cu ubaciti stvari koje se ticu administratorskih poslova</p>
 	
 	<a href = "addBalance.jsp"><button>ADD BALANCE</button></a>
+	<a href = "updateBalance.jsp"><button>UPDATE BALANCE</button></a>
 	
 	<hr>
 	<br>

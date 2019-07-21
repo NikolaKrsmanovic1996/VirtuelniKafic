@@ -20,21 +20,22 @@ public class RegistracijaDao {
 		this.sf = sf;
 	}
 	
-	public  boolean upisiUseraUbazu(String userName, String password) {
+	public boolean upisiUseraUbazu(String userName, String password) {
 		
 		User user = new User();
 			user.setUserName(userName);
 			user.setPassword(password);
-			
-	  
-			Rola rola;
-			if(ValidacijaZaRegistraciju.DaLiJeAdmin(userName, password)) {
-				rola = Rola.ADMINISTRATOR;
-			}else {
-				rola = Rola.KORISNIK;
-			}
-			
-			
+		
+		Rola rola;
+		
+		if(ValidacijaZaRegistraciju.daLiJeAdmin(userName, password)) {
+			rola = Rola.ADMINISTRATOR;
+		}else {
+			rola = Rola.KORISNIK;
+		}
+		
+		user.setRola(rola);
+	
 		Session session = sf.openSession();
 			session.beginTransaction();
 			
@@ -52,13 +53,6 @@ public class RegistracijaDao {
 			}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 

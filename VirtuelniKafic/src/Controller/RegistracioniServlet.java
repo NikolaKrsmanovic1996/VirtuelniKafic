@@ -6,12 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dao.LoginDao;
+
 import dao.RegistracijaDao;
-import model.Rola;
-import model.User;
 import validacija.ValidacijaZaRegistraciju;
 
 /**
@@ -27,7 +24,7 @@ public class RegistracioniServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//JA SAM BOG
+		
 		RegistracijaDao registracijaDAO = new RegistracijaDao();
 		
 		System.out.println("Pozdrav iz servleta!");
@@ -37,13 +34,7 @@ public class RegistracioniServlet extends HttpServlet {
 		String repeatedPassword = request.getParameter("repeatedPassword");
 		
 		
-		
-		
-		LoginDao loginDao = new LoginDao();
-		User user = new User();
-		
-
-       boolean provera = ValidacijaZaRegistraciju.proveraPassword(password, repeatedPassword);
+		boolean provera = ValidacijaZaRegistraciju.proveraPassworda(password, repeatedPassword);
 		
 		if(provera) {
 			boolean upisanUbazu = registracijaDAO.upisiUseraUbazu(userName, password);
@@ -59,9 +50,6 @@ public class RegistracioniServlet extends HttpServlet {
 		
 		
 	}
-			
-			
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
